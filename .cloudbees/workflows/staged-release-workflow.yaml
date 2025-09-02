@@ -27,36 +27,29 @@ metadata:
         - deploy-to-Production
 jobs:
   deploy-to-Dev:
-    steps:
-      - name: Deploy to Dev
-        uses: gmaxey/deployer-test/.cloudbees/workflows/deployer.yaml
-        with:
-          environment: ${{ inputs.environment }}
-          manifest: ${{ inputs.manifest }}
+    uses: .cloudbees/workflows/deployer.yaml
+    with:
+      environment: ${{ inputs.environment }}
+      manifest: ${{ inputs.manifest }}
   deploy-to-QA:
     needs:
       - deploy-to-Dev
-    steps:
-      - name: Deploy to QA
-        uses: gmaxey/deployer-test/.cloudbees/workflows/deployer.yaml
-        with:
-          environment: ${{ inputs.environment }}
-          manifest: ${{ inputs.manifest }}
+    uses: .cloudbees/workflows/deployer.yaml
+    with:
+      environment: ${{ inputs.environment }}
+      manifest: ${{ inputs.manifest }}
   deploy-to-PREPROD:
     needs:
       - deploy-to-QA
-    steps:
-      - name: Deploy to PREPROD
-        uses: gmaxey/deployer-test/.cloudbees/workflows/deployer.yaml
-        with:
-          environment: ${{ inputs.environment }}
-          manifest: ${{ inputs.manifest }}
+    uses: .cloudbees/workflows/deployer.yaml
+    with:
+      environment: ${{ inputs.environment }}
+      manifest: ${{ inputs.manifest }}
   deploy-to-Production:
     needs:
       - deploy-to-PREPROD
     steps:
-      - name: Deploy to Production
-        uses: gmaxey/deployer-test/.cloudbees/workflows/deployer.yaml
-        with:
-          environment: ${{ inputs.environment }}
-          manifest: ${{ inputs.manifest }}
+    uses: .cloudbees/workflows/deployer.yaml
+    with:
+      environment: ${{ inputs.environment }}
+      manifest: ${{ inputs.manifest }}
