@@ -48,7 +48,6 @@ jobs:
   deploy-to-Production:
     needs:
       - deploy-to-PREPROD
-    steps:
     uses: .cloudbees/workflows/deployer.yaml
     with:
       environment: ${{ inputs.environment }}
