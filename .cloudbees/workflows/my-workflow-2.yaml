@@ -34,24 +34,21 @@ jobs:
   deploy-to-QA:
     needs:
       - deploy-to-Dev
-    steps:
-      - name: Deploy to QA
-        uses: docker://golang:1.20.3-alpine3.17
-        shell: sh
-        run: echo "Deploying to QA"
+    uses: .cloudbees/workflows/deployer.yaml
+    with:
+      environment: ${{ inputs.manifest }}
+      manifest: ${{ inputs.manifest }}
   deploy-to-PREPROD:
     needs:
       - deploy-to-QA
-    steps:
-      - name: Deploy to PREPROD
-        uses: docker://golang:1.20.3-alpine3.17
-        shell: sh
-        run: echo "Deploying to PREPROD"
+    uses: .cloudbees/workflows/deployer.yaml
+    with:
+      environment: ${{ inputs.manifest }}
+      manifest: ${{ inputs.manifest }}
   deploy-to-Production:
     needs:
       - deploy-to-PREPROD
-    steps:
-      - name: Deploy to Production
-        uses: docker://golang:1.20.3-alpine3.17
-        shell: sh
-        run: echo "Deploying to Production"
+    uses: .cloudbees/workflows/deployer.yaml
+    with:
+      environment: ${{ inputs.manifest }}
+      manifest: ${{ inputs.manifest }}
