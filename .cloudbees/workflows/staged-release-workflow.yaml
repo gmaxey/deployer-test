@@ -29,26 +29,26 @@ jobs:
   deploy-to-Dev:
     uses: .cloudbees/workflows/deployer.yaml
     with:
-      environment: ${{ inputs.environment }}
+      environment: ${{ inputs.manifest }}
       manifest: ${{ inputs.manifest }}
   deploy-to-QA:
     needs:
       - deploy-to-Dev
     uses: .cloudbees/workflows/deployer.yaml
     with:
-      environment: ${{ inputs.environment }}
+      environment: ${{ inputs.manifest }}
       manifest: ${{ inputs.manifest }}
   deploy-to-PREPROD:
     needs:
       - deploy-to-QA
     uses: .cloudbees/workflows/deployer.yaml
     with:
-      environment: ${{ inputs.environment }}
+      environment: ${{ inputs.manifest }}
       manifest: ${{ inputs.manifest }}
   deploy-to-Production:
     needs:
       - deploy-to-PREPROD
     uses: .cloudbees/workflows/deployer.yaml
     with:
-      environment: ${{ inputs.environment }}
+      environment: ${{ inputs.manifest }}
       manifest: ${{ inputs.manifest }}
