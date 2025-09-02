@@ -29,7 +29,7 @@ jobs:
   deploy-to-Dev:
     steps:
       - name: Deploy to Dev
-        uses: .cloudbees/workflows/deployer.yaml
+        uses: gmaxey/deployer-test/.cloudbees/workflows/deployer.yaml
         with:
           environment: ${{ inputs.environment }}
           manifest: ${{ inputs.manifest }}
@@ -38,7 +38,7 @@ jobs:
       - deploy-to-Dev
     steps:
       - name: Deploy to QA
-        uses: .cloudbees/workflows/deployer.yaml
+        uses: gmaxey/deployer-test/.cloudbees/workflows/deployer.yaml
         with:
           environment: ${{ inputs.environment }}
           manifest: ${{ inputs.manifest }}
@@ -47,7 +47,7 @@ jobs:
       - deploy-to-QA
     steps:
       - name: Deploy to PREPROD
-        uses: .cloudbees/workflows/deployer.yaml
+        uses: gmaxey/deployer-test/.cloudbees/workflows/deployer.yaml
         with:
           environment: ${{ inputs.environment }}
           manifest: ${{ inputs.manifest }}
@@ -56,7 +56,7 @@ jobs:
       - deploy-to-PREPROD
     steps:
       - name: Deploy to Production
-        uses: .cloudbees/workflows/deployer.yaml
+        uses: gmaxey/deployer-test/.cloudbees/workflows/deployer.yaml
         with:
           environment: ${{ inputs.environment }}
           manifest: ${{ inputs.manifest }}
