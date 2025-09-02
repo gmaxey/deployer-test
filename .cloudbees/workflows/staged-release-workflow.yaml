@@ -11,7 +11,20 @@ on:
           application releases. Refer to
           https://docs.cloudbees.com/docs/cloudbees-platform/latest/applications/releases#manifest
           for the expected format
-
+metadata:
+  stages/v1alpha1:
+    - name: Dev
+      jobs:
+        - deploy-to-Dev
+    - name: QA
+      jobs:
+        - deploy-to-QA
+    - name: PREPROD
+      jobs:
+        - deploy-to-PREPROD
+    - name: Production
+      jobs:
+        - deploy-to-Production
 jobs:
   deploy-to-Dev:
     uses: .cloudbees/workflows/deployer.yaml
